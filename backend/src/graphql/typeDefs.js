@@ -8,6 +8,7 @@ module.exports = gql`
 
   type Query {
     welcome: String!
+    checkToken(token: String!): Boolean!
   }
 
   type User {
@@ -27,3 +28,4 @@ module.exports = gql`
     password: String!
   }
 `
+

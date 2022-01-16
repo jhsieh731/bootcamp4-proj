@@ -1,5 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express')
 const bcrypt = require('bcrypt')
+const { isValid } = require('date-fns')
 const jwt = require('jsonwebtoken')
 const config = require('../config')
 
@@ -16,17 +17,28 @@ const createToken = payload => jwt.sign(payload, config.tokenSecret)
  * @param {*} token
  * @returns {Promise<{id: number, phoneNumber: string}>}
  */
+// const decodeToken = token => {
+//   if (!token) {
+//     throw new AuthenticationError('Invalid token, please log in.')
+//   }
+//   try {
+//     return jwt.verify(token, config.tokenSecret)
+//   } catch (error) {
+//     throw new AuthenticationError('Invalid token, please log in.')
+//   }
+// }
+
 const decodeToken = token => {
   if (!token) {
-    throw new AuthenticationError('Invalid token, please log in.')
+    return false
   }
   try {
-    return jwt.verify(token, config.tokenSecret)
+    const isValidToken = jwt.verify(token, config.tokenSecret)
+    return isValidToken
   } catch (error) {
-    throw new AuthenticationError('Invalid token, please log in.')
+    return false
   }
 }
-
 
 /**
  *

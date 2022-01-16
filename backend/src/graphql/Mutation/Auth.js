@@ -1,8 +1,9 @@
 const { UserInputError } = require('apollo-server-express')
 const User = require('../../models/User')
 const {
-  hashPassword, comparePassword, createToken,
+  hashPassword, comparePassword, createToken
 } = require('../../lib/auth')
+const { decode } = require('jsonwebtoken')
 
 
 const login = async (obj, { email, password }) => {
@@ -17,7 +18,6 @@ const login = async (obj, { email, password }) => {
   if (!validPassword) {
     throw new UserInputError('Invalid email or password')
   }
-
 
   // If successful login, set authentication information
   const payload = {

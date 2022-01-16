@@ -31,6 +31,7 @@ const errorLink = onError(() => {
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
+  uri: 'http://localhost:5000/graphql',
   link: ApolloLink.from([
     errorLink,
     middlewareLink,
