@@ -1,20 +1,22 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useMutation } from '@apollo/react-hooks'
-import { LOGIN } from './graphql'
+import { REGISTER } from './graphql'
 import { SpinnerCircular } from 'spinners-react';
 
-const Login = () => {
+const Register = () => {
   const history = useHistory()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const [login, { data, loading, error }] = useMutation(LOGIN, {
+  const [register, { data, loading, error }] = useMutation(REGISTER, {
     variables: {
-      email, 
-      password
+      registerUser: {
+        email, 
+        password,
+      },
     },
-    onCompleted: ({ login: { token } }) => {
+    onCompleted: ({ register: { token } }) => {
       console.log("completed")
       localStorage.setItem('token', token)
       history.push('/home')
@@ -29,20 +31,16 @@ const Login = () => {
       <SpinnerCircular />
     )
   }
-
-  const register = () => {
-    history.push('/register')
-  }
-
   const errorComponent = error && (
-    <p>Login error</p>
+    <p>Registration error</p>
   )
 
   return (
     <div>
+      <p>Make a new account:</p>
       <form onSubmit={(e) => {
         e.preventDefault()
-        login()
+        register()
       }}>
         <input
           type="text"
@@ -56,15 +54,11 @@ const Login = () => {
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
-        <button type="submit">Log In</button>
+        <button type="submit">Register</button>
       </form>
       {errorComponent}
-      <div>
-        <p>No account? Register here!</p>
-        <button type="button" onClick={register}>Register New Account</button>
-      </div>
     </div>
   )
 }
 
-export default Login
+export default Register

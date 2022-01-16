@@ -16,6 +16,7 @@
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.3.0",
+    "spinners-react": "^1.0.6",
     "styled-components": "^4.4.0"
   },
   "devDependencies": {

@@ -3,11 +3,12 @@ import { decode } from 'jsonwebtoken'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { CHECK_TOKEN  } from './graphql'
+import { SpinnerCircular } from 'spinners-react';
 
 const Home = () => {
   const history = useHistory()
-
   const token = localStorage.getItem('token')
+  
   const {loading, error, data} = useQuery(CHECK_TOKEN, {
     variables: {
       token
@@ -15,8 +16,14 @@ const Home = () => {
     partialRefetch: true
   })
 
-  if (loading) return 'Loading...';
+  if (loading) {
+    return (
+      <SpinnerCircular />
+    )
+  };
+
   if (error) return `Error! ${error.message}`;
+
   const decodedToken = data.checkToken
   console.log(decodedToken);
   if (!decodedToken) {
