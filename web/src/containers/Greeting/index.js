@@ -2,7 +2,7 @@ import React from 'react'
 import CheckToken from "../CheckToken"
 
 const Greeting = () => {
-  const placeholder = ''
+  const user_id = localStorage.getItem('user_id')
   
   return (
     <CheckToken>

@@ -17,16 +17,6 @@ const createToken = payload => jwt.sign(payload, config.tokenSecret)
  * @param {*} token
  * @returns {Promise<{id: number, phoneNumber: string}>}
  */
-// const decodeToken = token => {
-//   if (!token) {
-//     throw new AuthenticationError('Invalid token, please log in.')
-//   }
-//   try {
-//     return jwt.verify(token, config.tokenSecret)
-//   } catch (error) {
-//     throw new AuthenticationError('Invalid token, please log in.')
-//   }
-// }
 
 const decodeToken = token => {
   if (!token) {

@@ -16,9 +16,10 @@ const Register = () => {
         password,
       },
     },
-    onCompleted: ({ register: { token } }) => {
+    onCompleted: ({ register: { token, user: { id } } }) => {
       console.log("completed")
       localStorage.setItem('token', token)
+      localStorage.setItem('user_id', id)
       history.push('/greeting')
     },
     onError: (error) => {
