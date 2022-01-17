@@ -9,7 +9,7 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const [login, { data, loading, error }] = useMutation(LOGIN, {
+  const [login, { loading, error }] = useMutation(LOGIN, {
     variables: {
       email, 
       password
@@ -17,7 +17,7 @@ const Login = () => {
     onCompleted: ({ login: { token } }) => {
       console.log("completed")
       localStorage.setItem('token', token)
-      history.push('/home')
+      history.push('/greeting')
     },
     onError: (error) => {
       // console.log(error);

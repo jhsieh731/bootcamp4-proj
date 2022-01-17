@@ -1,11 +1,10 @@
 import { useQuery } from '@apollo/react-hooks'
-import { decode } from 'jsonwebtoken'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { CHECK_TOKEN  } from './graphql'
 import { SpinnerCircular } from 'spinners-react';
 
-const Home = () => {
+const CheckToken = (props) => {
   const history = useHistory()
   const token = localStorage.getItem('token')
   
@@ -28,13 +27,12 @@ const Home = () => {
   console.log(decodedToken);
   if (!decodedToken) {
     history.push('/')
+    return null
+  } else {
+    return (
+      <>{props.children}</>
+    )
   }
-
-  return (
-    <div>Welcome to the DEV React starter!</div>
-  )
 }
 
-
-
-export default Home
+export default CheckToken

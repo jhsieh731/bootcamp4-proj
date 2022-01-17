@@ -9,7 +9,7 @@ const Register = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const [register, { data, loading, error }] = useMutation(REGISTER, {
+  const [register, { loading, error }] = useMutation(REGISTER, {
     variables: {
       registerUser: {
         email, 
@@ -19,7 +19,7 @@ const Register = () => {
     onCompleted: ({ register: { token } }) => {
       console.log("completed")
       localStorage.setItem('token', token)
-      history.push('/home')
+      history.push('/greeting')
     },
     onError: (error) => {
       // console.log(error);
