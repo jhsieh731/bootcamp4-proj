@@ -7,9 +7,10 @@ module.exports = gql`
     user(id:ID!): User!
     task(id:ID!): Task!
     allUsers: [User!]!
-    allTasks: [Task!]
+    allTasks: [Task!]!
     allFriendships: [Friendship!]!
-    friendships: [Friendship!]
+    friendships: Friendship!
+    getTasks(user_id: ID!): [Task!]!
   }
 
   type User {

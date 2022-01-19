@@ -29,3 +29,13 @@ import gql from 'graphql-tag'
 //     status
 //   }
 // }
+
+// query getTasks($id: ID!) {
+//   getTasks(user_id: $id) {
+//     title
+//     type
+//     status
+//     id
+//     UserId
+//   }
+// }
