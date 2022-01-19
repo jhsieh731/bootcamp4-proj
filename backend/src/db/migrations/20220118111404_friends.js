@@ -16,7 +16,7 @@ exports.up = async knex => createTableIfNotExists(knex, 'friends', table => {
     .notNullable()
 
   table 
-    .enum('status', ['Accepted', 'Pending', 'Rejected'])
+    .enum('status', ['Accepted', 'Pending'])
     .notNullable
 
   table.timestamp('createdAt').defaultTo(knex.fn.now())
