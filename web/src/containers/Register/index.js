@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { useMutation } from '@apollo/react-hooks'
 import { REGISTER } from './graphql'
 import { SpinnerCircular } from 'spinners-react';
+import { NiceRegisterBox, Background, NiceInput, NiceForm, GoodBox, RegisterButton } from './styles'
 
 const Register = () => {
   const history = useHistory()
@@ -37,28 +38,31 @@ const Register = () => {
   )
 
   return (
-    <div>
-      <p>Make a new account:</p>
-      <form onSubmit={(e) => {
+    <Background>
+      <NiceRegisterBox>
+        <GoodBox>
+      <NiceForm onSubmit={(e) => {
         e.preventDefault()
         register()
       }}>
-        <input
+        <NiceInput
           type="text"
           placeholder="email"
           value={email}
           onChange={e => setEmail(e.target.value)}
         />
-        <input
+        <NiceInput
           type="password"
           placeholder="password"
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
-        <button type="submit">Register</button>
-      </form>
+        <RegisterButton type="submit">Register</RegisterButton>
+      </NiceForm>
       {errorComponent}
-    </div>
+      </GoodBox>
+      </NiceRegisterBox>
+    </Background>
   )
 }
 
