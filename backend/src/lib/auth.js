@@ -24,7 +24,7 @@ const decodeToken = token => {
   }
   try {
     const isValidToken = jwt.verify(token, config.tokenSecret)
-    return isValidToken
+    if(isValidToken) return true
   } catch (error) {
     return false
   }

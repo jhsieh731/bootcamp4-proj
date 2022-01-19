@@ -6,7 +6,17 @@ class User extends BaseModel {
   }
 
   static get relationMappings() {
-    return {}
+    const Task = require('./Task')
+    return {
+      tasks: {
+        relation: HasManyRelation,
+        modelClass: Task,
+        join: {
+          from: 'users.id',
+          to: 'tasks.UserId',
+        },
+      },
+    }
   }
 }
 
