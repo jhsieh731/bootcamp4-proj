@@ -52,6 +52,8 @@ module.exports = gql`
     updateTask(id: ID!, input: AddTaskInput): Task!
     addUser(input: AddUserInput): User!
     addFriendship(input:AddFriendshipInput): Friendship!
+    deleteFriendship(id: ID!): Friendship! 
+    updateFriendship(id: ID!, input: AddFriendshipInput): Friendship!
   }
 
   input AddTaskInput {
