@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useMutation } from '@apollo/react-hooks'
 import { LOGIN } from './graphql'
-import { SpinnerCircular } from 'spinners-react';
+import { SpinnerCircular } from 'spinners-react'
+import { CenterElement, LoginButton, LoginField, ColBox, Attributes } from './styles'
 
 const Login = () => {
   const history = useHistory()
@@ -21,13 +22,15 @@ const Login = () => {
       history.push('/greeting')
     },
     onError: (error) => {
-      // console.log(error);
+      console.log(error);
     }
   })
 
   if (loading) {
     return (
-      <SpinnerCircular />
+      <ColBox>
+        <SpinnerCircular />
+      </ColBox>
     )
   }
 
@@ -40,31 +43,49 @@ const Login = () => {
   )
 
   return (
-    <div>
+    <CenterElement>
+      <ColBox><h1>Welcome to Procrastinate with Purpose:)</h1></ColBox>
       <form onSubmit={(e) => {
         e.preventDefault()
         login()
       }}>
-        <input
-          type="text"
-          placeholder="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-        <button type="submit">Log In</button>
+        <ColBox>
+          <LoginField
+            type="text"
+            placeholder="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+        </ColBox>
+        <ColBox>
+          <LoginField
+            type="password"
+            placeholder="password"
+            value={ password }
+            onChange={e => setPassword(e.target.value)}
+          />
+        </ColBox>
+        <ColBox>
+          <LoginButton type="submit">Log In</LoginButton>
+        </ColBox>
       </form>
-      {errorComponent}
-      <div>
+      <ColBox>
+        { errorComponent }
+      </ColBox>
+      <ColBox>
         <p>No account? Register here!</p>
-        <button type="button" onClick={register}>Register New Account</button>
-      </div>
-    </div>
+      </ColBox>
+      <ColBox>
+        <LoginButton type="button" onClick={ register }>Register New Account</LoginButton>
+      </ColBox>
+      <ColBox />
+      <Attributes>
+        Data from openweathermap.org and Bored API.
+      </Attributes>
+      <Attributes>
+        Created by Jocelyn Hsieh, Vik Kethamukkala, Caleb Painter, Lydia Shimelis, and Catherine Stanton.
+      </Attributes>
+    </CenterElement>
   )
 }
 

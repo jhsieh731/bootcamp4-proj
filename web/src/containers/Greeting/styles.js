@@ -1,7 +1,8 @@
 import styled from 'styled-components'
+import theme from '../../theme'
 
 export const InfoBox = styled.div`
-    background-color: #2E294E;
+    background-color: ${props => theme.colors.box};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,7 +14,7 @@ export const InfoBox = styled.div`
 
 export const CenteredText = styled.p`
     text-align: center;
-    font-family: "Courier New", monospace;
+    font-family:${props => theme.fonts.text.family};
     font-size: 20px;
     color: white;
 `
