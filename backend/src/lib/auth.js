@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const { isValid } = require('date-fns')
 const jwt = require('jsonwebtoken')
 const config = require('../config')
