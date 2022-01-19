@@ -6,8 +6,10 @@ module.exports = gql`
     checkToken(token: String!): Boolean!
     user(id:ID!): User!
     task(id:ID!): Task!
+    allUsers: [User!]!
     allTasks: [Task!]
-    allFriendships: [Friendship!] 
+    allFriendships: [Friendship!]!
+    friendships: [Friendship!]
   }
 
   type User {
@@ -16,6 +18,7 @@ module.exports = gql`
     createdAt: String!
     updatedAt: String!
     tasks: [Task!]
+    friendships: [Friendship!]
   }
 
   type Task {
@@ -28,16 +31,16 @@ module.exports = gql`
 
   type Friendship {
     id: ID!
-    Friend1_id: ID!
-    Friend2_id: ID!
-    Status: String!
+    friend1: ID!
+    friend2: ID!
+    status: String!
   }
 
   type AuthReturn {
     token: String!
     user: User!
   }
-  
+
   type Mutation {
     login(email: String!, password: String!): AuthReturn!
     register(input: RegisterInput!): AuthReturn!

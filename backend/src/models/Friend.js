@@ -14,7 +14,7 @@ class Friends extends BaseModel {
         relation: BelongsToOneRelation,
         modelClass: User,
         join: {
-          from: 'friends.user1Id',
+          from: 'friends.friend1',
           to: 'users.id',
         },
       },
@@ -22,4 +22,4 @@ class Friends extends BaseModel {
   }
 }
 
-module.exports = Task
+module.exports = Friends
