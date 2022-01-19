@@ -18,6 +18,12 @@ module.exports = gql`
     updatedAt: String!
   }
 
+  type Task {
+    id: ID!
+    type: String! 
+    status: String!
+  }
+
   type AuthReturn {
     token: String!
     user: User!
