@@ -44,9 +44,9 @@ module.exports = gql`
   type Mutation {
     login(email: String!, password: String!): AuthReturn!
     register(input: RegisterInput!): AuthReturn!
-    addTask(input: "not"): Task!
-    deleteTask(input: ID!): TaskID!
-    updateTask(input: ID!, input: AddTaskInput): TaskID!
+    addTask(input: AddTaskInput!): Task!
+    deleteTask(id: ID!): Task!
+    updateTask(id: ID!, input: AddTaskInput): Task!
     addUser(input: AddUserInput): User!
     addFriendship(input:AddFriendshipInput): Friendship!
   }

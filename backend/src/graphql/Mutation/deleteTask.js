@@ -1,8 +1,8 @@
 const Task =  require('../../models/Task')
 
-const deleteTask = async (obj, { input }) => {
+const deleteTask = async (obj, { id }) => {
     try {
-        const deleted = Task.query().delete().where(ID = input.TaskID).returning('*')
+        const deleted = await Task.query().deleteById(id).returning('*')
         return deleted
     }
     catch (err) {

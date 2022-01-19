@@ -2,12 +2,12 @@ const Task =  require('../../models/Task')
 
 const addTask = async (obj, { input }) => {
     try {
-        const added = Task.query().insert({
+        const added = await Task.query().insert({
             type: input.type,
             status: "not",
             title: input.title, 
-            UserID: input.UserID,
-        }).returning('*')
+            UserId: input.UserId,
+        })
         return added
     }
     catch (err) {

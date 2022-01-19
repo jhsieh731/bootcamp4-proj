@@ -1,8 +1,8 @@
 const Task =  require('../../models/Task')
 
-const updateTask = async (obj, { input }) => {
+const updateTask = async (obj, { id }) => {
     try {
-        const updated = Task.query().patch({
+        const updated = await Task.query().findById(id).patch({
             status: "done",
         }).returning('*')
         return updated
