@@ -3,12 +3,13 @@ import { useQuery } from '@apollo/react-hooks'
 import { SpinnerCircular } from 'spinners-react'
 import { GET_TASKS } from './graphql'
 
-const ProduceList = ({ deleteTask, updateTask, query }) => {
-
+const ProduceList = ({ deleteTask, updateTask, query, user_id }) => {
+ 
+  let list = ''
   // get tasks from database
   const { data: queryData, loading } = useQuery(GET_TASKS, {
     variables: {
-      user_id
+      id: user_id
     },
     partialRefetch: true,
   })
@@ -19,29 +20,40 @@ const ProduceList = ({ deleteTask, updateTask, query }) => {
   // filter by user search bar query if database query successful
   const buildList = (tasks) => {
     const mapped = tasks.filter(task => {
-      return task.name.includes(query.trim())
+      return task.title.includes(query.trim())
     })
     return mapped
   }
   if (queryData) {
-    list = buildList(queryData.tasks)
+    list = buildList(queryData.getTasks)
   }
 
   // generates list item component (html)
   const ListItem = ({ task }) => {
     return (
       <li>
-        {task.name}
+        {task.title}
         <button type="button" onClick={() => deleteTask({
           variables: {
-            task_id: task.id
-          }
+            id: task.id
+          },
+          update: (cache, { data: deletedTask }) => {
+            try {
+              const data = cache.readQuery({ query: GET_TASKS })
+              data.getTasks = data.filter(task => task.id !== deletedTask.id)
+              cache.writeQuery({ query: GET_TASKS, data })
+            } catch (error) {
+
+            }
+            
+          },
         })}>
           Delete Task
         </button>
+
         <button type="button" onClick={() => updateTask({
           variables: {
-            task_id: task.id
+            id: task.id
           }
         })}>
           Mark Complete
@@ -59,3 +71,4 @@ const ProduceList = ({ deleteTask, updateTask, query }) => {
 }
 
 export default ProduceList
+
