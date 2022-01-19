@@ -7,15 +7,8 @@ export const InfoBox = styled.div`
     align-items: center;
     position: absolute;
     top: 10vh;
-    height: 20vh;
+    height: auto;
     width: 100vw;
-`
-
-export const WelcomeText = styled.p`
-    font-family: "Courier New", monospace;
-    font-size: 24px;
-    font-style: bold;
-    color: white;
 `
 
 export const CenteredText = styled.p`
@@ -23,5 +16,4 @@ export const CenteredText = styled.p`
     font-family: "Courier New", monospace;
     font-size: 20px;
     color: white;
-
 `
