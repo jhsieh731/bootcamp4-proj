@@ -5,6 +5,7 @@ import AddTask from './AddTask'
 import ProduceList from './ProduceList'
 import { SpinnerCircular } from 'spinners-react'
 import { DELETE_TASK, ADD_TASK, UPDATE_TASK, GET_TASKS } from './graphql'
+import { BackgroundBox, TopContainer, BestBarDiv, Ftext, BestInput, MiddleContainer, BigDiv, FormContainer } from './styles'
 
 const Produce = () => {
   const user_id = localStorage.getItem('user_id')
@@ -27,13 +28,27 @@ const Produce = () => {
 
   return (
     <CheckToken>
-      <input type="text"
-        name="userInput"
-        placeholder="Query"
-        value={query}
-        onChange={e => setQuery(e.target.value)} />
+    <BackgroundBox>
+      <MiddleContainer>
+        <TopContainer>
+          <BestBarDiv>
+            <Ftext>
+            Filter:
+            </Ftext>
+            <BestInput type="text"
+            name="userInput"
+            value={query}
+            onChange={e => setQuery(e.target.value)} />
+          </BestBarDiv>
+        </TopContainer>
+      <BigDiv>
       <ProduceList deleteTask={deleteTask} query={query} updateTask={updateTask} user_id={user_id} />
-      <AddTask onAddTask={addTask} user_id={user_id} />
+      </BigDiv>
+      <FormContainer>
+        <AddTask onAddTask={addTask} user_id={user_id} />
+      </FormContainer>
+      </MiddleContainer>
+      </BackgroundBox>
     </CheckToken>
   )
 }

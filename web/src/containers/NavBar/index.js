@@ -19,6 +19,7 @@ const NavBar = () => {
         <Link to="/produce">Produce</Link>
         <Link to="/procrastinate">Procrastinate</Link>
         <Link to="/social">Social</Link>
+        <Link to="/completed">Completed</Link>
         <NiceButton type="button" onClick={logout}>Log Out</NiceButton>
     </FlexBox>
   )

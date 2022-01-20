@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import { NiceButton } from '../NavBar/styles'
 import { GET_TASKS } from './graphql'
+import { BestBarDiv, BestInput, AddButton } from './styles'
 
 const AddTask = ({ onAddTask, user_id }) => {
   const [newTask, setNewTask] = useState('')
@@ -31,16 +33,17 @@ const AddTask = ({ onAddTask, user_id }) => {
   }
 
   return (
+    <BestBarDiv>
     <form onSubmit={addTask}>
-      <input
+      <BestInput
         type="text"
-        placeholder="Task name"
         name="newTask"
         value={newTask}
         onChange={e => setNewTask(e.target.value)}
       />
-      <button type="submit">Submit</button>
+      <AddButton type="submit">Submit</AddButton>
     </form>
+    </BestBarDiv>
   )
 }
 

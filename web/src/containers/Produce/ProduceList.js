@@ -2,9 +2,10 @@ import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { SpinnerCircular } from 'spinners-react'
 import { GET_TASKS } from './graphql'
+import { BestLi, NiceDiv, BestCoSpan, TaskButton } from './styles'
 
 const ProduceList = ({ deleteTask, updateTask, query, user_id }) => {
- 
+
   let list = ''
   // get tasks from database
   const { data: queryData, loading } = useQuery(GET_TASKS, {
@@ -13,7 +14,7 @@ const ProduceList = ({ deleteTask, updateTask, query, user_id }) => {
     },
     partialRefetch: true,
   })
-  if(loading) {
+  if (loading) {
     return SpinnerCircular
   }
 
@@ -31,36 +32,40 @@ const ProduceList = ({ deleteTask, updateTask, query, user_id }) => {
   // generates list item component (html)
   const ListItem = ({ task }) => {
     return (
-      <li>
-        <button type="button" onClick={() => deleteTask({
-          variables: {
-            id: task.id
-          },
-          refetchQueries: () => [{
-            query: GET_TASKS,
+      <NiceDiv>
+        <BestLi>{
+          task.title}
+        </BestLi>
+        <BestCoSpan>
+          <TaskButton type="button" onClick={() => deleteTask({
             variables: {
-              id: user_id
-            }
-          }]
-        })}>
-          Delete Task
-        </button>
+              id: task.id
+            },
+            refetchQueries: () => [{
+              query: GET_TASKS,
+              variables: {
+                id: user_id
+              }
+            }]
+          })}>
+            Delete
+          </TaskButton>
 
-        <button type="button" onClick={() => updateTask({
-          variables: {
-            id: task.id
-          },
-          refetchQueries: () => [{
-            query: GET_TASKS,
+          <TaskButton type="button" onClick={() => updateTask({
             variables: {
-              id: user_id
-            }
-          }]
-        })}>
-          Mark Complete
-        </button>
-        {task.title}
-      </li>
+              id: task.id
+            },
+            refetchQueries: () => [{
+              query: GET_TASKS,
+              variables: {
+                id: user_id
+              }
+            }]
+          })}>
+            Complete
+          </TaskButton>
+        </BestCoSpan>
+      </NiceDiv>
     )
   }
 

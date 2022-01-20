@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { GET_ACTIVITIES } from './graphql'
+import { BestBarDiv, BestInput, AddButton, GoodLabel, NoiceForm, AddActButton, FindButton, GoodSelect, ActivityDiv, DecentDiv} from './styles'
+
 
 const AddTask = ({ onAddTask, user_id }) => {
   const [newTask, setNewTask] = useState('')
@@ -93,21 +95,21 @@ const AddTask = ({ onAddTask, user_id }) => {
   }
 
   return (
-    <div>
-      <form onSubmit={generateActivity}>
-        <label>Choose an activity:</label>
-        <select value={type} onChange={handleChange}>
+    <DecentDiv>
+      <NoiceForm onSubmit={generateActivity}>
+        {/* <GoodLabel>Choose an activity:</GoodLabel> */}
+        <GoodSelect value={type} onChange={handleChange}>
           {options.map((option) => (
             <option value={option.value} key={option.key}>{option.label}</option>
           ))}
-      </select>
-      <button type="submit">Find Activity</button>
-    </form>
-      
+      </GoodSelect>
+      <FindButton type="submit">Find Activity</FindButton>
+    </NoiceForm>
+    <ActivityDiv>
       <GeneratedActivity />
-      <button type="button" onClick={addTask}>AddTask</button>
-    </div>
-      
+      </ActivityDiv>
+      <AddActButton type="button" onClick={addTask}>AddTask</AddActButton>
+      </DecentDiv>      
   )
 }
 
