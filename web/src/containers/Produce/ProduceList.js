@@ -5,7 +5,7 @@ import { GET_TASKS } from './graphql'
 import { BestLi, NiceDiv, BestCoSpan, TaskButton } from './styles'
 
 const ProduceList = ({ deleteTask, updateTask, query, user_id }) => {
- 
+
   let list = ''
   // get tasks from database
   const { data: queryData, loading } = useQuery(GET_TASKS, {
@@ -14,7 +14,7 @@ const ProduceList = ({ deleteTask, updateTask, query, user_id }) => {
     },
     partialRefetch: true,
   })
-  if(loading) {
+  if (loading) {
     return SpinnerCircular
   }
 
@@ -33,37 +33,37 @@ const ProduceList = ({ deleteTask, updateTask, query, user_id }) => {
   const ListItem = ({ task }) => {
     return (
       <NiceDiv>
-      <BestLi>{
-      task.title}
-      </BestLi>
-      <BestCoSpan>
-        <TaskButton type="button" onClick={() => deleteTask({
-          variables: {
-            id: task.id
-          },
-          refetchQueries: () => [{
-            query: GET_TASKS,
+        <BestLi>{
+          task.title}
+        </BestLi>
+        <BestCoSpan>
+          <TaskButton type="button" onClick={() => deleteTask({
             variables: {
-              id: user_id
-            }
-          }]
-        })}>
-          Delete
-        </TaskButton>
+              id: task.id
+            },
+            refetchQueries: () => [{
+              query: GET_TASKS,
+              variables: {
+                id: user_id
+              }
+            }]
+          })}>
+            Delete
+          </TaskButton>
 
-        <TaskButton type="button" onClick={() => updateTask({
-          variables: {
-            id: task.id
-          },
-          refetchQueries: () => [{
-            query: GET_TASKS,
+          <TaskButton type="button" onClick={() => updateTask({
             variables: {
-              id: user_id
-            }
-          }]
-        })}>
-          Complete
-        </TaskButton>
+              id: task.id
+            },
+            refetchQueries: () => [{
+              query: GET_TASKS,
+              variables: {
+                id: user_id
+              }
+            }]
+          })}>
+            Complete
+          </TaskButton>
         </BestCoSpan>
       </NiceDiv>
     )

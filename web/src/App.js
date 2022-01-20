@@ -11,6 +11,7 @@ import NavBar from './containers/NavBar'
 import Produce from './containers/Produce'
 import Procrastinate from './containers/Procrastinate'
 import Social from './containers/Social'
+import CompletedList from './containers/Completed'
 
 const App = () => (
   <Router>
@@ -25,6 +26,7 @@ const App = () => (
               <Route path="/greeting" component={Greeting} />
               <Route path="/produce" component={Produce} />
               <Route path="/procrastinate" component={Procrastinate} />
+              <Route path="/completed" component={CompletedList} />
               <Route path="/social" component={Social} />
             </>
           </Switch>

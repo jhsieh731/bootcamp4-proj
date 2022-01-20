@@ -5,8 +5,8 @@ const User = require('./User')
 const getFriends = require('./getFriends')
 const getTasks = require('./getTasks')
 const getActivities = require('./getActivities')
+const getCompleted = require('./getCompleted')
 
-
-const resolvers = [Welcome, CheckToken, User, getFriends, getTasks, getActivities]
+const resolvers = [Welcome, CheckToken, User, getFriends, getTasks, getActivities, getCompleted]
 
 module.exports = merge(...resolvers)

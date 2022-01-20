@@ -3,11 +3,11 @@ import { useQuery } from '@apollo/react-hooks'
 import { SpinnerCircular } from 'spinners-react'
 import { GET_COMPLETED } from './graphql'
 
-const CompletedList = ({ query, user_id }) => {
- 
+const CompletedList = () => {
+  const user_id = localStorage.getItem('user_id')
   let list = ''
   // get tasks from database
-  const { data: queryData, loading } = useQuery(GET_COMPLETED, {
+  const { data, loading, refetch } = useQuery(GET_COMPLETED, {
     variables: {
       id: user_id
     },
@@ -17,22 +17,34 @@ const CompletedList = ({ query, user_id }) => {
     return SpinnerCircular
   }
 
-  // filter by user search bar query if database query successful
-  const buildList = (completed) => {
-    const mapped = completed.filter(completed => {
-      return completed.title.includes(query.trim().toLowerCase())
+  const buildList = (list) => {
+    const built = list.map(li => {
+      return li.title
     })
-    return mapped
+    return built
   }
-  if (queryData) {
-    list = buildList(queryData.getCompleted)
+
+  if (data) {
+    list = buildList(data.getCompleted)
+    console.log(list);
+  }
+
+  const ListItem = ({ task }) => {
+    return (
+      <li>
+        {task}
+      </li>
+    )
   }
 
   // make complete list of queried results (or "no result")
   return (
-    <ul>
-      {list.length > 0 ? list.map(task => <ListItem completed_task={task} key={task.id} />) : "No results"}
-    </ul>
+    <div>
+      <ul>
+        {list.length > 0 ? list.map(task => <ListItem task={task} key={task.id} />) : "No results"}
+      </ul>
+      <button type="button" onClick={() => refetch()}>Update</button>
+    </div>
   )
 }
 
