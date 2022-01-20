@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import theme from '../../theme'
+import img from './studypng.jpeg';
 
 
 export const BestLi = styled.li `
@@ -13,7 +14,7 @@ export const BestLi = styled.li `
 `
 
 export const BackgroundBox = styled.div`
-    background-color: ${ () => theme.colors.box};
+    background-image: url(${img});
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,7 +114,6 @@ margin-top: 18px;
 export const NiceDiv = styled.div`
     background: #fed8b1; 
     border-radius: 4px;
-    border: 2px solid black;
     overflow: auto;
     padding: 10px;
     margin-top:10px;

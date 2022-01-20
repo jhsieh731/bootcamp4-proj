@@ -5,6 +5,8 @@ import AddTask from './AddTask'
 import ProcrastList from './ProcrastList'
 import { SpinnerCircular } from 'spinners-react'
 import { DELETE_TASK, ADD_TASK, UPDATE_TASK } from './graphql'
+import { BackgroundBox, TopContainer, BestBarDiv, Ftext, BestInput, MiddleContainer, BigDiv, FormContainer, LeftContainer } from './styles'
+
 
 const Procrastinate = () => {
   const user_id = localStorage.getItem('user_id')
@@ -26,13 +28,30 @@ const Procrastinate = () => {
 
   return (
     <CheckToken>
-      <input type="text"
-        name="userInput"
-        placeholder="Query"
-        value={query}
-        onChange={e => setQuery(e.target.value)} />
+    <BackgroundBox>
+      <LeftContainer>
+      <FormContainer>
+        <AddTask onAddTask={addTask} user_id={user_id} />
+      </FormContainer>
+      </LeftContainer>
+      <MiddleContainer>
+        <TopContainer>
+          <BestBarDiv>
+            <Ftext>
+            Filter:
+            </Ftext>
+            <BestInput type="text"
+            name="userInput"
+            value={query}
+            onChange={e => setQuery(e.target.value)} />
+          </BestBarDiv>
+        </TopContainer>
+      <BigDiv>
       <ProcrastList deleteTask={deleteTask} query={query} updateTask={updateTask} user_id={user_id} />
-      <AddTask onAddTask={addTask} user_id={user_id} />
+      </BigDiv>
+      
+      </MiddleContainer>
+      </BackgroundBox>
     </CheckToken>
   )
 }

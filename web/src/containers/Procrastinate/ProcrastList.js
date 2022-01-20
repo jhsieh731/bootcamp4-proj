@@ -2,6 +2,8 @@ import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { SpinnerCircular } from 'spinners-react'
 import { GET_ACTIVITIES } from './graphql'
+import { BestLi, NiceDiv, BestCoSpan, TaskButton } from './styles'
+
 
 const ProcrastList = ({ deleteTask, updateTask, query, user_id }) => {
  
@@ -31,8 +33,12 @@ const ProcrastList = ({ deleteTask, updateTask, query, user_id }) => {
   // generates list item component (html)
   const ListItem = ({ task }) => {
     return (
-      <li>
-        <button type="button" onClick={() => deleteTask({
+      <NiceDiv>
+      <BestLi>{
+      task.title}
+      </BestLi>
+      <BestCoSpan>
+        <TaskButton type="button" onClick={() => deleteTask({
           variables: {
             id: task.id
           },
@@ -43,10 +49,10 @@ const ProcrastList = ({ deleteTask, updateTask, query, user_id }) => {
             }
           }]
         })}>
-          Delete Task
-        </button>
+          Delete
+        </TaskButton>
 
-        <button type="button" onClick={() => updateTask({
+        <TaskButton type="button" onClick={() => updateTask({
           variables: {
             id: task.id
           },
@@ -57,10 +63,10 @@ const ProcrastList = ({ deleteTask, updateTask, query, user_id }) => {
             }
           }]
         })}>
-          Mark Complete
-        </button>
-        {task.title}
-      </li>
+          Complete
+        </TaskButton>
+        </BestCoSpan>
+      </NiceDiv>
     )
   }
 
