@@ -9,16 +9,23 @@ const AddTask = ({ onAddTask, user_id }) => {
     onAddTask({
       variables: {
         taskInput: {
-          title: newTask,
+          title: newTask.toLowerCase(),
           type: 'task',
           UserId: user_id,
         }
       },
-      update: (client, { data: { addTask } }) => {
-        const data = client.readQuery({ query: GET_TASKS })
-        data.getTasks = [...data.getTasks, addTask]
-        client.writeQuery({ query: GET_TASKS, data })
-      },
+      // update: (client, { data: { addTask } }) => {
+      //   const data = client.readQuery({ query: GET_TASKS })
+      //   data.getTasks = [...data.getTasks, addTask]
+      //   client.writeQuery({ query: GET_TASKS, data })
+      // },
+      refetchQueries: () => [{ 
+        query: GET_TASKS, 
+        variables: {
+          id: user_id
+        } 
+      }],
+
     })
     setNewTask('')
   }

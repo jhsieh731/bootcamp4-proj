@@ -1,9 +1,14 @@
 const { getProduct } = require('../../lib/auth')
+const Task =  require('../../models/Task')
 
 const getActivities = async (obj, { user_id }) => {
-    const activities = await tasks.query().where('UserId', 'user_id')
-        .andWhere('type', 'activity').andWhere('status', 'not')
-  return getActivities(activities)
+  try {
+    const tasks = await Task.query().select('*').where({ UserId: user_id })
+      .andWhere({ type: 'activity' }).andWhere({ status: 'not' })
+    return tasks
+  } catch (err) {
+    throw new Error('failed to get activities')
+  }
 }
 
 const resolver = {

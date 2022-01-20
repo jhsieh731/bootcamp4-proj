@@ -4,13 +4,14 @@ import { useMutation } from '@apollo/react-hooks'
 import AddTask from './AddTask'
 import ProduceList from './ProduceList'
 import { SpinnerCircular } from 'spinners-react'
-import { DELETE_TASK, ADD_TASK, UPDATE_TASK } from './graphql'
+import { DELETE_TASK, ADD_TASK, UPDATE_TASK, GET_TASKS } from './graphql'
 
 const Produce = () => {
   const user_id = localStorage.getItem('user_id')
   const [query, setQuery] = useState('')
 
   const [addTask, { loading: addLoading }] = useMutation(ADD_TASK, {
+    // refetchQueries: [GET_TASKS, 'getTasks'],
     onError: (error) => `Submission error! ${error.message}`,
   })
 

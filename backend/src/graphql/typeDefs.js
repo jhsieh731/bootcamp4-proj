@@ -10,6 +10,7 @@ module.exports = gql`
     allTasks: [Task!]!
     allFriendships: [Friendship!]!
     getTasks(user_id: ID!): [Task!]!
+    getActivities(user_id: ID!): [Task!]!
     friendships: [Friendship!]
     friendship(id: ID!): [Friendship!]!
     pendingFriend(id:ID!): [Friendship!]!
