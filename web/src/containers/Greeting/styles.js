@@ -17,3 +17,14 @@ export const CenteredText = styled.p`
     font-size: 20px;
     color: white;
 `
+
+export const Attributes = styled.footer`
+    font-family: ${props => theme.fonts.text.family};
+    color: black;
+    display: flex;
+    justify-content: center;
+`
+
+export const CenterElement = styled.div`
+    margin: auto;
+`

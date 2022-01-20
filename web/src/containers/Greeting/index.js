@@ -34,35 +34,63 @@ const Greeting = () => {
     }
     return season;
   }
-  const [temp1, setTemp1] = useState({})
-  const [temp2, setTemp2] = useState({})
-  const getTempDifference = async () => {
-      const currentUnix = new Date().getTime()
-      const oldUnix = (currentUnix - 31556952000)
-      const response1 = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=Boston,us&start=${currentUnix}&appid=2b6e1fdfed69b04f6b7eb5d94563d0ca`)
-      const response2 = await fetch(`http://history.openweathermap.org/data/2.5/history/city?q=Boston,US&type=hour&start=${oldUnix}&cnt=1&appid=2b6e1fdfed69b04f6b7eb5d94563d0ca`)
-      const datum1 = await response1.json()
-      const datum2 = await response2.json()
-      console.log(datum2)
-      setTemp1(datum1)
-      setTemp2(datum2)
-      return (temp1.main.temp - 459.67) - (temp2.list[0].main.temp - 459.67)
-  }
-  const direction = (getTempDifference) => {
-    if (getTempDifference > 0) {
+  let lat
+  let long
+  navigator.geolocation.getCurrentPosition(async position => {
+    lat = position.coords.latitude
+    long = position.coords.longitude
+  })
+  const [weather, setWeather] = useState({})
+  useEffect(() => {
+    if (lat && long) {
+      const fetchData = async () => {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=2b6e1fdfed69b04f6b7eb5d94563d0ca&units=imperial`)
+        const data = await response.json()
+        setWeather(data)
+      }
+      fetchData()
+    }
+  }, [lat, long])
+  console.log(weather)
+  const [pastweather, setPastWeather] = useState({})
+  useEffect(() => {
+    if (lat && long) {
+      const fetchData1 = async () => {
+        const response = await fetch(`http://history.openweathermap.org/data/2.5/history/city?lat=${lat}&lon=${long}&type=hour&start=0&cnt=1&appid=2b6e1fdfed69b04f6b7eb5d94563d0ca&units=imperial`)
+        const data = await response.json()
+        setPastWeather(data)
+      }
+      fetchData1()
+    }
+  }, [lat, long])
+  console.log(pastweather)
+  const direction = (TempDifference) => {
+    if (TempDifference > 0) {
       return 'warmer'
     } return 'colder'
+  }
+  const message = (Difference) => {
+    if (Difference > 5) {
+      return 'In  other words, we are burning'
+    } else if (Difference > 10) {
+      return 'The world is literally ending'
+    } else if (Difference < 5) {
+      return 'It may not seem like much, but we will all burn sooner than we think'
+    }
   }
   return (
     <CheckToken>
         <InfoBox>
+          { Object.keys(weather).length && Object.keys(pastweather).length 
+          ? (
             <Update onInterval={ () => setDate(Date().toLocaleString().split(' ')) } content=
                 { `Get Ready to Procrastinate with Purpose!\n
                 Today is ${ date[0] }, ${ date[1] } ${ date[2] }, ${ date[3] }.\n
                 The local time is ${ convert(date[4]) }\n
-                This ${ getSeason(new Date()) }, it is ${ useEffect(() => {getTempDifference()}, []) } \xB0F ${ direction } than it was 40 years ago.\n
-                In other words, the world is ending.\n
-                Put down your silly little TODO list and join our community of master procrastinators.` } />
+                This ${ getSeason(new Date()) }, it is ${ parseFloat(weather.main.temp - pastweather.list[0].main.temp).toFixed(2) } \xB0F ${ direction(weather.main.temp - pastweather.list[0].main.temp) } than it was 40 years ago.\n
+                ${ message(weather.main.temp - pastweather.list[0].main.temp) }.\n
+                Put down your silly little TODO list and join our community of master procrastinators.`} />
+            ) : <></>}
         </InfoBox>
     </CheckToken>
   )
