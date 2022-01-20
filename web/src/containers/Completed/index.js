@@ -2,7 +2,7 @@ import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { SpinnerCircular } from 'spinners-react'
 import { GET_COMPLETED } from './graphql'
-import { BestLi, BackgroundBox, CompleteButton} from '../Completed/styles'
+import { BestLi, BackgroundBox, CompleteButton, CenterBox, PushP, GoodUl, Goodli} from './styles'
 
 const CompletedList = () => {
   const user_id = localStorage.getItem('user_id')
@@ -32,18 +32,22 @@ const CompletedList = () => {
 
   const ListItem = ({ task }) => {
     return (
-      <li>
+      <Goodli>
         {task}
-      </li>
+      </Goodli>
     )
   }
 
   // make complete list of queried results (or "no result")
   return (
     <BackgroundBox>
-      <BestLi>
+      <CenterBox>
+        <PushP>You've completed these tasks!</PushP>
+      <GoodUl>
         {list.length > 0 ? list.map(task => <ListItem task={task} key={task.id} />) : "No results"}
-      </BestLi>
+      </GoodUl>
+      </CenterBox>
+
       <CompleteButton type="button" onClick={() => refetch()}>Update</CompleteButton>
     </BackgroundBox>
   )
