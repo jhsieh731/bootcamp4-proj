@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+import { GET_TASKS } from './graphql'
 
-const AddTask = ({ onAddTask }) => {
+const AddTask = ({ onAddTask, user_id }) => {
   const [newTask, setNewTask] = useState('')
 
   const addTask = e => {
@@ -8,9 +9,23 @@ const AddTask = ({ onAddTask }) => {
     onAddTask({
       variables: {
         taskInput: {
-          name: newTask
+          title: newTask.toLowerCase(),
+          type: 'task',
+          UserId: user_id,
         }
       },
+      // update: (client, { data: { addTask } }) => {
+      //   const data = client.readQuery({ query: GET_TASKS })
+      //   data.getTasks = [...data.getTasks, addTask]
+      //   client.writeQuery({ query: GET_TASKS, data })
+      // },
+      refetchQueries: () => [{ 
+        query: GET_TASKS, 
+        variables: {
+          id: user_id
+        } 
+      }],
+
     })
     setNewTask('')
   }

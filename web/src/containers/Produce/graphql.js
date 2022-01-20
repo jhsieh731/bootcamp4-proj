@@ -1,41 +1,38 @@
 import gql from 'graphql-tag'
 
-// export const GET_TASKS, ADD_TASK, DELETE_TASK, UPDATE_TASK = gql`
-//   query QUERYNAME($VARIABLE: TYPE!) {
-//     QUERYNAME(SCHEMAVAR: $VARIABLE) {
-//        DESIRED_VAR_NAMES,
-// }
-//   }
-// `
+export const DELETE_TASK = gql`
+  mutation deleteTask($id: ID!) {
+    deleteTask(id: $id) {
+      title
+      id
+    }
+  }
+`
 
-// mutation deleteTask($id: ID!) {
-//   deleteTask(id: $id) {
-//     title
-//   }
-// }
+export const ADD_TASK = gql`
+  mutation addTask($taskInput: AddTaskInput!) {
+    addTask(input: $taskInput) {
+      title
+      id
+    }
+  }
+`
 
-// mutation addTask($userInput: AddTaskInput!) {
-//   addTask(input: $userInput) {
-//     title
-//     type
-//     UserId
-//     id
-//   }
-// }
+export const UPDATE_TASK = gql`
+  mutation update($id: ID!) {
+    updateTask(id: $id) {
+      title
+      id
+    }
+  }
+`
 
-// mutation update($id: ID!) {
-//   updateTask(id: $id) {
-//     title
-//     status
-//   }
-// }
+export const GET_TASKS = gql`
+  query getTasks($id: ID!) {
+    getTasks(user_id: $id) {
+      title
+      id
+    }
+  }
+`
 
-// query getTasks($id: ID!) {
-//   getTasks(user_id: $id) {
-//     title
-//     type
-//     status
-//     id
-//     UserId
-//   }
-// }

@@ -1,13 +1,13 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { SpinnerCircular } from 'spinners-react'
-import { GET_TASKS } from './graphql'
+import { GET_ACTIVITIES } from './graphql'
 
-const ProduceList = ({ deleteTask, updateTask, query, user_id }) => {
+const ProcrastList = ({ deleteTask, updateTask, query, user_id }) => {
  
   let list = ''
   // get tasks from database
-  const { data: queryData, loading } = useQuery(GET_TASKS, {
+  const { data: queryData, loading } = useQuery(GET_ACTIVITIES, {
     variables: {
       id: user_id
     },
@@ -25,7 +25,7 @@ const ProduceList = ({ deleteTask, updateTask, query, user_id }) => {
     return mapped
   }
   if (queryData) {
-    list = buildList(queryData.getTasks)
+    list = buildList(queryData.getActivities)
   }
 
   // generates list item component (html)
@@ -37,7 +37,7 @@ const ProduceList = ({ deleteTask, updateTask, query, user_id }) => {
             id: task.id
           },
           refetchQueries: () => [{
-            query: GET_TASKS,
+            query: GET_ACTIVITIES,
             variables: {
               id: user_id
             }
@@ -51,7 +51,7 @@ const ProduceList = ({ deleteTask, updateTask, query, user_id }) => {
             id: task.id
           },
           refetchQueries: () => [{
-            query: GET_TASKS,
+            query: GET_ACTIVITIES,
             variables: {
               id: user_id
             }
@@ -72,5 +72,5 @@ const ProduceList = ({ deleteTask, updateTask, query, user_id }) => {
   )
 }
 
-export default ProduceList
+export default ProcrastList
 

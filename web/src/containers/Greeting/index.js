@@ -5,7 +5,6 @@ import { DateTime } from 'luxon'
 
 
 const Greeting = () => {
-  const user_id = localStorage.getItem('user_id')
   const [date, setDate] = useState(Date().toLocaleString().split(' '))
   const Update = (props) => {
       setInterval(props.onInterval, 1000)
