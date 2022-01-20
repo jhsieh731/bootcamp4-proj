@@ -4,7 +4,7 @@ const Task =  require('../../models/Task')
 const getCompleted = async (obj, { user_id }) => {
   try {
     const completed = await Task.query().select('*').where({ UserId: user_id })
-      .andWhere({ type: 'task' }).andWhere({ status: 'done' })
+      .andWhere({ status: 'done' })
     return completed
   } catch (err) {
     throw new Error('failed to get completed tasks')
