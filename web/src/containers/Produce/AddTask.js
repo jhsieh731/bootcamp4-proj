@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { NiceButton } from '../NavBar/styles'
 import { GET_TASKS } from './graphql'
 import { BestBarDiv, BestInput, AddButton } from './styles'
 
@@ -16,11 +15,6 @@ const AddTask = ({ onAddTask, user_id }) => {
           UserId: user_id,
         }
       },
-      // update: (client, { data: { addTask } }) => {
-      //   const data = client.readQuery({ query: GET_TASKS })
-      //   data.getTasks = [...data.getTasks, addTask]
-      //   client.writeQuery({ query: GET_TASKS, data })
-      // },
       refetchQueries: () => [{ 
         query: GET_TASKS, 
         variables: {

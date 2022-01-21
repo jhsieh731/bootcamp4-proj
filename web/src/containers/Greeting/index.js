@@ -1,101 +1,141 @@
 import React, { useState, useEffect } from 'react'
 import CheckToken from "../CheckToken"
-import { InfoBox, CenteredText } from "./styles"
+import { InfoBox, CenteredText, BackgroundBox } from "./styles"
 import { DateTime } from 'luxon'
+import { SpinnerCircular } from 'spinners-react'
 
+const UNKNOWN = "--"
 
 const Greeting = () => {
   const [date, setDate] = useState(Date().toLocaleString().split(' '))
+
   const Update = (props) => {
-      setInterval(props.onInterval, 1000)
-      const text = props.content
-      const formatText = text.split('\n').map(str => <p>{ str }</p>)
-      return <CenteredText>{ formatText }</CenteredText>
+    const onInterval = () => setDate(Date().toLocaleString().split(' '))
+    setInterval(onInterval, 1000)
+    return props.children
   }
-  const convert = (time) => {
-      let toD;
-      if (time.split(':')[0] > 11) {
-          toD = 'PM'
-      } else {
-          toD = 'AM'
-      }
-      return `${DateTime.fromFormat(time, 'HH:mm:ss').toFormat('h:mm:ss')} ${ toD }.`
-  }
-  const getSeason = (dateobj) => {
-    let season;
-    if (dateobj.getMonth() <= 4 && dateobj.getMonth() >= 2) {
-      season = 'spring'
-    } else if (dateobj.getMonth() <= 7 && dateobj.getMonth() >= 5) {
-      season = 'summer'
-    } else if (dateobj.getMonth() <= 10 && dateobj.getMonth() >= 8) {
-      season = 'fall'
-    } else {
-      season = 'winter'
+
+  const convertTime = () => {
+    if (date) {
+      const time = date[4]
+      const toD = (time.split(':')[0] > 11) ? 'PM': 'AM'
+      return `${DateTime.fromFormat(time, 'HH:mm:ss').toFormat('h:mm:ss')} ${toD}.`
     }
-    return season;
+    return UNKNOWN
   }
-  let lat
-  let long
-  navigator.geolocation.getCurrentPosition(async position => {
-    lat = position.coords.latitude
-    long = position.coords.longitude
-  })
-  const [weather, setWeather] = useState({})
+
+  const convertDate = () => {
+    if (date) {
+      return `${date[0]}, ${date[1]} ${date[2]}, ${date[3]}`
+    }
+    return UNKNOWN
+  }
+
+  const getSeason = () => {
+    const dateObject = new Date()
+    const month = dateObject.getMonth()
+    switch (month) {
+      case 2:
+      case 3:
+      case 4:
+        return 'spring'
+      case 5:
+      case 6:
+      case 7:
+        return 'summer'
+      case 8:
+      case 9:
+      case 10:
+        return 'fall'
+      default: 
+        return 'winter'
+    }
+  }
+
+  const [lat, setLat] = useState(null)
+  const [long, setLong] = useState(null)
+  const success = (pos) => {
+    const crd = pos.coords;
+    setLat(crd.latitude)
+    setLong(crd.longitude)
+    console.log({ lat });
+  }
+  const error = () => {}
+  navigator.geolocation.getCurrentPosition(success, error)
+
+  const [weather, setWeather] = useState()
   useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=2b6e1fdfed69b04f6b7eb5d94563d0ca&units=imperial`)
+      const data = await response.json()
+      setWeather(data)
+    }
     if (lat && long) {
-      const fetchData = async () => {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=2b6e1fdfed69b04f6b7eb5d94563d0ca&units=imperial`)
-        const data = await response.json()
-        setWeather(data)
-      }
       fetchData()
     }
+    else {
+      console.log("MISSING LAT & LONG");
+    }
   }, [lat, long])
-  console.log(weather)
-  const [pastweather, setPastWeather] = useState({})
+
+  const [pastweather, setPastWeather] = useState()
   useEffect(() => {
+    const fetchData1 = async () => {
+      const response = await fetch(`http://history.openweathermap.org/data/2.5/history/city?lat=${lat}&lon=${long}&type=hour&start=0&cnt=1&appid=2b6e1fdfed69b04f6b7eb5d94563d0ca&units=imperial`)
+      const data = await response.json()
+      setPastWeather(data)
+    }
     if (lat && long) {
-      const fetchData1 = async () => {
-        const response = await fetch(`http://history.openweathermap.org/data/2.5/history/city?lat=${lat}&lon=${long}&type=hour&start=0&cnt=1&appid=2b6e1fdfed69b04f6b7eb5d94563d0ca&units=imperial`)
-        const data = await response.json()
-        setPastWeather(data)
-      }
       fetchData1()
     }
   }, [lat, long])
-  console.log(pastweather)
   const direction = (TempDifference) => {
-    if (TempDifference > 0) {
-      return 'warmer'
-    } return 'colder'
+    return TempDifference > 0 
+      ? 'warmer'
+      : 'colder'
   }
-  const message = (Difference) => {
-    if (Difference > 5) {
+
+  const weatherMessage = (difference) => {
+    if (difference > 5) {
       return 'In  other words, we are burning'
-    } else if (Difference > 10) {
+    } else if (difference > 10) {
       return 'The world is literally ending'
-    } else if (Difference < 5) {
+    } else if (difference < 5) {
       return 'It may not seem like much, but we will all burn sooner than we think'
     }
   }
+
+  const isWeatherExist = weather && pastweather
+  const degreeDiff = isWeatherExist
+    ? `${parseFloat(weather.main.temp - pastweather.list[0].main.temp).toFixed(2)} \xB0F ${direction(weather.main.temp - pastweather.list[0].main.temp)}`
+    : UNKNOWN
+  const showWeatherMessage = isWeatherExist
+    ? weatherMessage(weather.main.temp - pastweather.list[0].main.temp)
+    : UNKNOWN
+
   return (
     <CheckToken>
+      <BackgroundBox>
         <InfoBox>
-          { Object.keys(weather).length && Object.keys(pastweather).length 
-          ? (
-            <Update onInterval={ () => setDate(Date().toLocaleString().split(' ')) } content=
-                { `Get Ready to Procrastinate with Purpose!\n
-                Today is ${ date[0] }, ${ date[1] } ${ date[2] }, ${ date[3] }.\n
-                The local time is ${ convert(date[4]) }\n
-                This ${ getSeason(new Date()) }, it is ${ parseFloat(weather.main.temp - pastweather.list[0].main.temp).toFixed(2) } \xB0F ${ direction(weather.main.temp - pastweather.list[0].main.temp) } than it was 40 years ago.\n
-                ${ message(weather.main.temp - pastweather.list[0].main.temp) }.\n
-                Put down your silly little TODO list and join our community of master procrastinators.`} />
-            ) : <></>}
+          <Update>
+            <CenteredText>
+              <p>Get ready to Procrastinate with Purpose!</p>
+              <p>Today is {convertDate()}, </p>
+              <p>This {getSeason()}, it is {degreeDiff} than it was 40 years ago.</p>
+              <p>The local time is {convertTime()}</p>
+              <p>{showWeatherMessage}</p>
+              <p>Put down your silly little TODO list and join our community of master procrastinators.</p>
+              {!isWeatherExist && <SpinnerCircular />}
+            </CenteredText>
+          </Update>
         </InfoBox>
+      </BackgroundBox>
     </CheckToken>
   )
 }
 
 export default Greeting
 
-// This ${ getSeason(new Date()) }, it is ${ useEffect(() => {getTempDifference()}, []) } \xB0F ${ direction } than it was 40 years ago.\n
+
+
+

@@ -2,7 +2,7 @@ import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { SpinnerCircular } from 'spinners-react'
 import { GET_COMPLETED } from './graphql'
-import { BestLi, BackgroundBox, CompleteButton, CenterBox, PushP, GoodUl, Goodli} from './styles'
+import { BackgroundBox, CompleteButton, CenterBox, PushP, GoodUl, Goodli} from './styles'
 
 const CompletedList = () => {
   const user_id = localStorage.getItem('user_id')

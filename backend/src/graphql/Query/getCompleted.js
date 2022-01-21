@@ -1,4 +1,3 @@
-const { getProduct } = require('../../lib/auth')
 const Task =  require('../../models/Task')
 
 const getCompleted = async (obj, { user_id }) => {
