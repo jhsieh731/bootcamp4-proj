@@ -2,6 +2,7 @@ import { useQuery, useMutation } from "@apollo/react-hooks"
 import React from "react"
 import { SpinnerCircular } from "spinners-react"
 import { USERNAME, UPDATE_FRIEND, DELETE_FRIEND, GET_FRIENDS, PENDING, FRIEND_COMPLETED } from "./graphql"
+import { BestLi, BestP, BestTask, DelFriendBtn, AccButton, RejButton} from "./styles"
 
 const UsernameLI = ({ friend_id, page, user_id }) => {
   // get friend emails/usernames
@@ -74,27 +75,32 @@ const UsernameLI = ({ friend_id, page, user_id }) => {
   if (data && countData && page==="friends") {
     const count = countData.getCompleted.length
     return (
-      <li>
-        <p>{data.user.email}</p>
-        <p>Tasks completed: {count}</p>
-        <button type="button" onClick={reject}>Delete Friend</button>
-      </li>
+      <BestLi>
+        <BestP>{data.user.email}</BestP>
+        <BestTask>Tasks completed: {count}
+        <DelFriendBtn type="button" onClick={reject}>Delete Friend</DelFriendBtn>
+        </BestTask>
+      </BestLi>
     )
   }
   if (data && page==="pending") {
     return (
-      <li>
-        <button type="button" onClick={accept}>Accept</button>
-        <button type="button" onClick={reject}>Reject</button>
-        {data.user.email}
-      </li>
+      <BestLi>
+        <BestP>{data.user.email}</BestP>
+        <BestTask>
+        <AccButton type="button" onClick={accept}>Accept</AccButton>
+        <RejButton type="button" onClick={reject}>Reject</RejButton>
+        </BestTask>
+      </BestLi>
     )
   }
   if (data && page==="requested") {
     return (
-      <li>
+      <BestLi>
+        <BestTask>
         {data.user.email}
-      </li>
+        </BestTask>
+      </BestLi>
     )
   }
   if (loading || countLoading || acceptLoading || rejectLoading ) return <SpinnerCircular />

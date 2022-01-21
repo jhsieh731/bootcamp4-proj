@@ -3,6 +3,7 @@ import { GET_FRIENDS } from './graphql'
 import { useQuery } from '@apollo/react-hooks'
 import { SpinnerCircular } from 'spinners-react'
 import UsernameLI from './UsernameLI'
+import { ActualFriends } from './styles'
 
 const Friends = ({ user_id }) => {
   let list = ''
@@ -39,10 +40,10 @@ const Friends = ({ user_id }) => {
   )
 
   return (
-    <div>
-      Your friends: 
+    <ActualFriends>
+      <h4>Your friends: </h4>
       {fullList(list)}
-    </div>
+    </ActualFriends>
   )
 }
 

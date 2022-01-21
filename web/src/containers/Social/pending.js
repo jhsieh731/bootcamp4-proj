@@ -3,6 +3,7 @@ import { PENDING } from './graphql'
 import { useQuery } from '@apollo/react-hooks'
 import { SpinnerCircular } from 'spinners-react'
 import UsernameLI from './UsernameLI'
+import { PendingFriends } from './styles'
 
 const Pending = ({ user_id }) => {
   let list = ''
@@ -39,10 +40,10 @@ const Pending = ({ user_id }) => {
   )
 
   return (
-    <div>
-      Pending friends:
+    <PendingFriends>
+      <h4>Pending friends:</h4>
       {fullList(list)}
-    </div>
+    </PendingFriends>
   )
 }
 
