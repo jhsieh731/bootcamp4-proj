@@ -15,7 +15,7 @@ const CompletedList = () => {
     partialRefetch: true,
   })
   if(loading) {
-    return SpinnerCircular
+    return <SpinnerCircular />
   }
 
   const buildList = (list) => {

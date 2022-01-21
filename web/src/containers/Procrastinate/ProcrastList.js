@@ -16,7 +16,7 @@ const ProcrastList = ({ deleteTask, updateTask, query, user_id }) => {
     partialRefetch: true,
   })
   if(loading) {
-    return SpinnerCircular
+    return <SpinnerCircular />
   }
 
   // filter by user search bar query if database query successful

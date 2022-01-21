@@ -24,7 +24,7 @@ const Procrastinate = () => {
     onError: (error) => `Submission error! ${error.message}`
   })
 
-  if (updateLoading || deleteLoading || addLoading) return SpinnerCircular
+  if (updateLoading || deleteLoading || addLoading) return <SpinnerCircular />
 
   return (
     <CheckToken>

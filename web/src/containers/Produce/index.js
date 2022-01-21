@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/react-hooks'
 import AddTask from './AddTask'
 import ProduceList from './ProduceList'
 import { SpinnerCircular } from 'spinners-react'
-import { DELETE_TASK, ADD_TASK, UPDATE_TASK, GET_TASKS } from './graphql'
+import { DELETE_TASK, ADD_TASK, UPDATE_TASK } from './graphql'
 import { BackgroundBox, TopContainer, BestBarDiv, Ftext, BestInput, MiddleContainer, BigDiv, FormContainer } from './styles'
 
 const Produce = () => {
@@ -24,7 +24,7 @@ const Produce = () => {
     onError: (error) => `Submission error! ${error.message}`
   })
 
-  if (updateLoading || deleteLoading || addLoading) return SpinnerCircular
+  if (updateLoading || deleteLoading || addLoading) return <SpinnerCircular />
 
   return (
     <CheckToken>

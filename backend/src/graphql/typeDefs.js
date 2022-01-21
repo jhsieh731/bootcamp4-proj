@@ -5,6 +5,7 @@ module.exports = gql`
     welcome: String!
     checkToken(token: String!): Boolean!
     user(id:ID!): User!
+    userByEmail(email:String!): User!
     task(id:ID!): Task!
     allUsers: [User!]!
     allTasks: [Task!]!
@@ -52,11 +53,10 @@ module.exports = gql`
     register(input: RegisterInput!): AuthReturn!
     addTask(input: AddTaskInput!): Task!
     deleteTask(id: ID!): Task!
-    updateTask(id: ID!, input: AddTaskInput): Task!
-    addUser(input: AddUserInput): User!
-    addFriendship(input:AddFriendshipInput): Friendship!
-    deleteFriendship(id: ID!): Friendship! 
-    updateFriendship(id: ID!, input: AddFriendshipInput): Friendship!
+    updateTask(id: ID!): Task!
+    addFriendship(input:AddFriendshipInput!): Friendship!
+    deleteFriendship(input:DeleteFriendInput!): Friendship! 
+    updateFriendship(input:UpdateFriendshipInput!): Friendship!
   }
 
   input AddTaskInput {
@@ -65,16 +65,19 @@ module.exports = gql`
     UserId: ID!
   }
 
-  input AddUserInput {
-    email: String!
-    createdAt: String!
-    updatedAt: String!
+  input AddFriendshipInput {
+    friend1: ID!
+    friend2_email: String!
   }
 
-  input AddFriendshipInput {
-    Friend1_id: ID!
-    Friend2_id: ID!
-    Status: String!
+  input UpdateFriendshipInput {
+    friend1: ID!
+    friend2: ID!
+  }
+
+  input DeleteFriendInput {
+    friend1: ID!
+    friend2: ID!
   }
 
   input RegisterInput {

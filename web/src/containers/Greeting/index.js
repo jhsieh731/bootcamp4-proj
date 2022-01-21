@@ -97,3 +97,5 @@ const Greeting = () => {
 }
 
 export default Greeting
+
+// This ${ getSeason(new Date()) }, it is ${ useEffect(() => {getTempDifference()}, []) } \xB0F ${ direction } than it was 40 years ago.\n

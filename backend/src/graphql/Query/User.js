@@ -1,7 +1,7 @@
 const User = require('../../models/User')
 const { getProduct } = require('../../lib/auth')
 const Friend = require('../../models/Friend')
-
+const Task = require('../../models/Task')
 
 const allUsers = async () => {
     try {
@@ -23,14 +23,26 @@ const user = async (obj, { id  }, context) => {
   return a
 }
 
+const userByEmail = async (obj, { email }, context) => {
+  const a = await User.query().findOne('email', email)
+  return a
+}
+
+const tasks = async ({ id }, params, context) => {
+  const b = await Task.query().where('UserId', id).andWhere({ status: 'done' })
+  return b
+}
+
   
   const resolver = {
     Query: { 
     allUsers,
     user,
+    userByEmail
     },
     User: {
         friendships,
+        tasks,
     },
   }
   

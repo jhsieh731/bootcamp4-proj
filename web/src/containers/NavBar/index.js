@@ -4,7 +4,6 @@ import client from '../../client'
 import { useHistory } from 'react-router-dom'
 
 const NavBar = () => {
-  const token = localStorage.getItem('token')
   const history = useHistory()
 
   const logout = () => {
