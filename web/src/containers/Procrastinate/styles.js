@@ -297,7 +297,7 @@ export const BestCoSpan = styled.span`
     margin-left: 5px;
 `
 export const BestBarDiv = styled.div`
-    background-color: ${ () => theme.colors.box};
+    background-color: #2E294E;
     border-radius: 3px;
     padding: 5px;
     overflow: auto;

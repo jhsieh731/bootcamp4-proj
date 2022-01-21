@@ -4,11 +4,11 @@ import { NavLink } from 'react-router-dom'
 export const FlexBox = styled.div `
   display: flex;
   flex-direction: row;
-  background: lightblue;
+  background: #2E294E;
 `
 
 export const Link = styled(NavLink) `
-  color: black;
+  color: white;
   font-size: large;
   font-weight: bold;
   font-family: 'Lato', sans-serif;  
