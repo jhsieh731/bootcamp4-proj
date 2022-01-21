@@ -245,7 +245,7 @@ export const BestInput = styled.input`
   margin-top: 10px;
   padding: 7px 0; 
   border-bottom: 1px solid white;
-  background-color: ${() => theme.colors.box};
+  background-color: #2E294E;
   color: white;
   margin-bottom: 10px;
   font-size: 15px;
