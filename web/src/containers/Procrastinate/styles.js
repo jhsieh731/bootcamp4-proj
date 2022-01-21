@@ -1,16 +1,15 @@
 import styled from 'styled-components'
 import theme from '../../theme'
-import img from './studypng.jpeg';
+import img from './anime.gif';
 
 
 export const BestLi = styled.li`
   list-style-type: none;
   width: 60%;
-
   float: left;
   padding-left: 10px;
   margin-top: 3px;
-  height: 100%;
+  height: 100vh;
   overflow:auto;
 `
 
@@ -23,6 +22,7 @@ export const BackgroundBox = styled.div`
   padding-bottom: 35px;
   padding-top: 10px;
   width: 100vw;
+  height: 100vh
 `
 
 
