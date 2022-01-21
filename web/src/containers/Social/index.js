@@ -6,6 +6,7 @@ import Requested from './requested'
 import { useQuery } from '@apollo/react-hooks'
 import { FRIEND_COMPLETED, GET_USER } from './graphql'
 import { SpinnerCircular } from 'spinners-react'
+import { Container, YourselfBox, FriendsBox, SelfInfoDiv } from './styles'
 
 const Social = () => {
   const user_id = localStorage.getItem('user_id')
@@ -26,11 +27,11 @@ const Social = () => {
   const Self = () => {
     if (countData && userData) {
       return (
-        <div>
-          <p>YOU!</p>
+        <SelfInfoDiv>
+          <h3>YOU!</h3>
           <p>Email/Username: {userData.user.email}</p>
           <p>Tasks Completed: {countData.getCompleted.length}</p>
-        </div>
+        </SelfInfoDiv>
       )
     }
     if (countLoading && userLoading) return <SpinnerCircular />
@@ -39,10 +40,16 @@ const Social = () => {
 
   return (
     <CheckToken>
+      <Container>
+        <YourselfBox>
       <Self />
-      <Friends user_id={user_id} />
-      <Pending user_id={user_id} />
-      <Requested user_id={user_id} />
+      </YourselfBox>
+      <FriendsBox>
+        <Friends user_id={user_id} />
+        <Pending user_id={user_id} />
+        <Requested user_id={user_id} />
+      </FriendsBox>
+      </Container>
     </CheckToken>
   )
 }

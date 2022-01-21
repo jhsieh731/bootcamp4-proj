@@ -3,6 +3,7 @@ import { ADD_FRIEND, GET_FRIENDS, PENDING, REQUESTED, USERBYEMAIL } from './grap
 import { useMutation, useQuery, useLazyQuery } from '@apollo/react-hooks'
 import { SpinnerCircular } from 'spinners-react'
 import UsernameLI from './UsernameLI'
+import { RequestedFriends } from './styles'
 
 const shouldAddFriend = (queryData, requestData, user_id, friendData, pendingData) => {
   const friend_id = queryData.userByEmail.id
@@ -107,8 +108,8 @@ const Friends = ({ user_id }) => {
   }
 
   return (
-    <div>
-      Requested friends: 
+    <RequestedFriends>
+      <h4>Requested friends: </h4>
       {fullList(list)}
       <form onSubmit={e => {
         e.preventDefault()
@@ -126,7 +127,7 @@ const Friends = ({ user_id }) => {
         />
         <button type="submit">Send friend request</button>
       </form>
-    </div>
+    </RequestedFriends>
   )
 }
 
