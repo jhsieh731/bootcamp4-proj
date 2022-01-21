@@ -42,7 +42,7 @@ const CompletedList = () => {
   return (
     <BackgroundBox>
       <CenterBox>
-        <PushP>You've completed these tasks!</PushP>
+        <PushP>Completed Tasks:</PushP>
       <GoodUl>
         {list.length > 0 ? list.map(task => <ListItem task={task} key={task.id} />) : "No results"}
       </GoodUl>

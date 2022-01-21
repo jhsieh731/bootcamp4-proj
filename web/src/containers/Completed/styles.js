@@ -1,52 +1,50 @@
 import styled from 'styled-components'
+import img from './confetti.gif';
 
-export const BestLi = styled.li `
-    list-style-type: none;
-    width: 60%;
-
-    float: left;
-    padding-left: 10px;
-    margin-top: 3px;
-    height: 100%;
-    overflow:auto;
-`
+// export const BestLi = styled.li `
+//   list-style-type: none;
+//   width: 60%;
+//   float: left;
+//   padding-left: 10px;
+//   margin-top: 3px;
+//   height: 100%;
+//   overflow:auto;
+// `
 
 export const BackgroundBox = styled.div`
-    background: #fee6e3; 
-    border-radius: 4px;
-    overflow: auto;
-    padding: 10px;
-    align: row;
-    margin-left: -40px;
-    height: 100vh;
-
+  background-image: url(${img});
+  border-radius: 4px;
+  overflow: auto;
+  padding: 10px;
+  margin-left: -40px;
+  height: 100vh;
 `
 
 export const GoodUl = styled.ul`
-    text-align: center;
-    list-style-position: inside;
+  text-align: center;
+  list-style-position: inside;
 
 `
 export const Goodli = styled.li`
-    padding: 5px;
+  padding: 5px;
+  text-align: center;
 `
 
 export const CenterBox = styled.div`
-    margin: auto;
-    margin-top: 60px;
-width: 40%;
-border: 2px solid black;
-padding: 10px;
-border-radius: 2px;
-background-color: white;
-box-shadow: 5px 5px 3px #888888;
-text-align: center;
+  background-color: #2E294E;
+  color: white;
+  margin: auto;
+  margin-top: 60px;
+  width: 40%;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
 `
 
-export const PushP = styled.p`
-    text-align: center;
-    font-weight: bold;
-    font-size: large;
+export const PushP = styled.h2`
+  text-align: center;
+  font-weight: bold;
 `
 
 export const CompleteButton = styled.button`
@@ -87,7 +85,7 @@ export const CompleteButton = styled.button`
   &:hover {
     background: #F6F9FE;
     color: #174ea6;
-    }
+  }
 
 
 
