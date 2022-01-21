@@ -88,8 +88,8 @@ const UsernameLI = ({ friend_id, page, user_id }) => {
       <BestLi>
         <BestP>{data.user.email}</BestP>
         <BestTask>
-        <AccButton type="button" onClick={accept}>Accept</AccButton>
-        <RejButton type="button" onClick={reject}>Reject</RejButton>
+          <AccButton type="button" onClick={accept}>Accept</AccButton>
+          <RejButton type="button" onClick={reject}>Reject</RejButton>
         </BestTask>
       </BestLi>
     )

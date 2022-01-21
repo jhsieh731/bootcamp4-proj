@@ -39,17 +39,19 @@ export const ActualFriends = styled.div`
 `
 
 export const PendingFriends = styled.div`
+    display: flex;
+    flex-direction: column;
     text-align: center;
     background-color: white;
     flex-grow: 1;
     width: 33%;
-    padding: 20px;
     border: 2px solid white;
     border-radius: 10px;
     height: 100%;
     background-color: #2E294E;
     height: 70vh;
     margin: 20px 0px;
+    padding: 20px;
     color: white;
     font-family: "Google Sans",Roboto,Arial,sans-serif;
 `
@@ -65,6 +67,8 @@ export const RequestedFriends = styled.div`
     height: 70vh;
     margin: 20px;
     color: white;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+
 `
 
 export const SelfInfoDiv = styled.div`
@@ -73,14 +77,16 @@ export const SelfInfoDiv = styled.div`
 `
 
 export const BestLi = styled.li `
+    flex-grow: 1;
     list-style-type: none;
     background-color: #c1c8e4;
+    align-items: center;
     display: flex;
     flex-direction: row;
     border-radius: 6px;
     border: none;
     height: 50px;
-    margin: 10px;
+    margin: 20px;
     color: black;
     padding: 10px;
 `
@@ -95,34 +101,58 @@ export const BestP = styled.li`
     border-right: 1px solid black;
     margin-right: 10px;
     font-weight: bold;
-    width: 190px;
+    width: 200px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    overflow: hidden;
 `
 
 export const BestTask = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    flex-wrap: no-wrap;
+
+    margin: 20px;
     background-color: white;
     text-align: center;
-    vertical-align: middle;
-    line-height: 50px;
+    padding: 10px;
     padding-left: 10px;
     padding-right: 10px;
     width: 100%;
+    height: 70%;
     border-radius: 10px;
-
 `
 
 export const DelFriendBtn = styled.button`
-    margin-left: 10px;
-    margin: 10px;
+
     border-radius: 10px;
     font-family: "Google Sans",Roboto,Arial,sans-serif;
     padding: 5px;
+    background-color: #c1c8e4;
+    &:hover {
+      background-color: #a7b3c7;
+    }
 `
 
 export const AccButton = styled.button`
-    margin-right: 20px;
+    border-radius: 10px;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    padding: 5px;
+    background-color: #c1c8e4;
+    &:hover {
+      background-color: #a7b3c7;
+    }
 `   
 
 
 export const RejButton = styled.button`
-    margin-left: 20px;
-`   
+  border-radius: 10px;
+  margin-left: 5px;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  padding: 5px;
+  background-color: #c1c8e4;
+  &:hover {
+    background-color: #a7b3c7;
+  }
+`
