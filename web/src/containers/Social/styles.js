@@ -77,7 +77,7 @@ export const BestLi = styled.li `
 `
 
 export const BestP = styled.li`
-    background-color: lightgray;
+    background-color: #fdd385;
     text-align: center;
     vertical-align: middle;
     line-height: 50px;
