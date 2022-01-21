@@ -15,6 +15,7 @@ export const BestLi = styled.li `
 
 export const BackgroundBox = styled.div`
     background-image: url(${img});
+    background-color: #c1c8e4;
     display: flex;
     justify-content: center;
     align-items: center;

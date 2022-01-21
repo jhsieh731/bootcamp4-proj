@@ -13,6 +13,7 @@ import img from './confetti.gif';
 
 export const BackgroundBox = styled.div`
   background-image: url(${img});
+  background-color: #c1c8e4;
   border-radius: 4px;
   overflow: auto;
   padding: 10px;
