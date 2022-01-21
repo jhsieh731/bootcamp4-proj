@@ -1,15 +1,16 @@
 import styled from 'styled-components'
 import theme from '../../theme'
-import img from './anime.gif';
+import img from './studypng.jpeg';
 
 
 export const BestLi = styled.li`
   list-style-type: none;
   width: 60%;
+
   float: left;
   padding-left: 10px;
   margin-top: 3px;
-  height: 100vh;
+  height: 100%;
   overflow:auto;
 `
 
@@ -22,7 +23,6 @@ export const BackgroundBox = styled.div`
   padding-bottom: 35px;
   padding-top: 10px;
   width: 100vw;
-  height: 100vh
 `
 
 
@@ -224,7 +224,7 @@ export const LeftContainer = styled.div`
 `
 
 export const NiceDiv = styled.div`
-  background: #fed8b1; 
+  background: #2E294E; 
   border-radius: 4px;
   overflow: auto;
   padding: 10px;
