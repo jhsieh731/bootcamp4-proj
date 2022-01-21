@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import theme from '../../theme'
-import img from './studypng.jpeg';
+import img from './matrix.gif';
 
 
 export const BestLi = styled.li `
