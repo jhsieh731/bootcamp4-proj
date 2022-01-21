@@ -1,15 +1,4 @@
-const { getProduct } = require('../../lib/auth')
 const Friend = require('../../models/Friend')
-const { User } = require('./User')
-
-const allFriendships = async () => {
-  try {
-    const friends = await Friend.query()
-    return friends
-  } catch (err) {
-    throw new Error('failure')
-  }
-}
 
 const friendship = async (obj, { id }, context) => {
   const a = await Friend.query().where(builder => builder.where('friend1', id).orWhere('friend2',id))
@@ -29,7 +18,6 @@ const requestedFriend = async (obj, { id }, context) => {
 
 const resolver = {
   Query: {
-    allFriendships,
     friendship, 
     pendingFriend,
     requestedFriend,

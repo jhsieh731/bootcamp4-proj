@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { ADD_FRIEND, GET_FRIENDS, REQUESTED, USERBYEMAIL } from './graphql'
+import { ADD_FRIEND, GET_FRIENDS, PENDING, REQUESTED, USERBYEMAIL } from './graphql'
 import { useMutation, useQuery, useLazyQuery } from '@apollo/react-hooks'
 import { SpinnerCircular } from 'spinners-react'
 import UsernameLI from './UsernameLI'
 
-const shouldAddFriend = (queryData, requestData, user_id, friendData) => {
+const shouldAddFriend = (queryData, requestData, user_id, friendData, pendingData) => {
   const friend_id = queryData.userByEmail.id
   const inRequested = requestData.requestedFriend.filter(friendship => {
     return friendship.friend1 === user_id && friendship.friend2 === friend_id
@@ -13,7 +13,10 @@ const shouldAddFriend = (queryData, requestData, user_id, friendData) => {
     return (friendship.friend1 === user_id && friendship.friend2 === friend_id)
       || (friendship.friend1 === friend_id && friendship.friend2 === user_id)
   }).length
-  return (inRequested === 0 && inFriends === 0)
+  const inPending = pendingData.pendingFriend.filter(friendship => {
+    return friendship.friend1 === friend_id && friendship.friend2 === user_id
+  }).length
+  return (inRequested === 0 && inFriends === 0 && inPending === 0)
 }
 
 const Friends = ({ user_id }) => {
@@ -30,6 +33,13 @@ const Friends = ({ user_id }) => {
   })
 
   const { data:friendData, loading:friendLoading } = useQuery(GET_FRIENDS, {
+    variables: {
+      id: user_id,
+    },
+    partialRefetch: true,
+  })
+
+  const { data:pendingData, loading:pendingLoading } = useQuery(PENDING, {
     variables: {
       id: user_id,
     },
@@ -84,15 +94,15 @@ const Friends = ({ user_id }) => {
     </ul>
   )
 
-  if (queryData && requestData && friendData && formSubmit) {
+  if (queryData && requestData && friendData && formSubmit && pendingData) {
     setFormSubmit(false)
-    if (shouldAddFriend(queryData, requestData, user_id, friendData)) {
+    if (shouldAddFriend(queryData, requestData, user_id, friendData, pendingData)) {
       mutAddFriend()
     }
     setRequest('')
   }
 
-  if (requestLoading || friendLoading || queryLoading || addLoading) {
+  if (requestLoading || friendLoading || queryLoading || addLoading || pendingLoading) {
     return <SpinnerCircular />
   }
 

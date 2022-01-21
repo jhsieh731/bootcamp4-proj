@@ -1,7 +1,54 @@
 import React, { useState } from 'react'
 import { GET_ACTIVITIES } from './graphql'
-import { BestBarDiv, BestInput, AddButton, GoodLabel, NoiceForm, AddActButton, FindButton, GoodSelect, ActivityDiv, DecentDiv} from './styles'
+import { NoiceForm, AddActButton, FindButton, GoodSelect, ActivityDiv, DecentDiv } from './styles'
 
+const options = [
+  {
+    label: "Education",
+    value: "education",
+    key: 0
+  },
+  {
+    label: "Recreational",
+    value: "recreational",
+    key: 1
+  },
+  {
+    label: "Social",
+    value: "social",
+    key: 2
+  },
+  {
+    label: "DIY",
+    value: "diy",
+    key: 3
+  },
+  {
+    label: "Charity",
+    value: "charity",
+    key: 4
+  },
+  {
+    label: "Cooking",
+    value: "cooking",
+    key: 5
+  },
+  {
+    label: "Relaxation",
+    value: "relaxation",
+    key: 6
+  },
+  {
+    label: "Music",
+    value: "music",
+    key: 7
+  },
+  {
+    label: "Busywork",
+    value: "busywork",
+    key: 8
+  },
+];
 
 const AddTask = ({ onAddTask, user_id }) => {
   const [newTask, setNewTask] = useState('')
@@ -9,7 +56,7 @@ const AddTask = ({ onAddTask, user_id }) => {
 
   const generateActivity = (e) => {
     e.preventDefault()
-    setNewTask('loading...')
+    setNewTask("loading...")
     const fetchData = async () => {
       const res = await fetch(`http://www.boredapi.com/api/activity?type=${type}`)
       const data = await res.json()
@@ -42,54 +89,6 @@ const AddTask = ({ onAddTask, user_id }) => {
     setNewTask('')
   }
 
-  const options = [
-    {
-      label: "Education",
-      value: "education",
-      key: 0
-    },
-    {
-      label: "Recreational",
-      value: "recreational",
-      key: 1
-    },
-    {
-      label: "Social",
-      value: "social",
-      key: 2
-    },
-    {
-      label: "DIY",
-      value: "diy",
-      key: 3
-    },
-    {
-      label: "Charity",
-      value: "charity",
-      key: 4
-    },
-    {
-      label: "Cooking",
-      value: "cooking",
-      key: 5
-    },
-    {
-      label: "Relaxation",
-      value: "relaxation",
-      key: 6
-    },
-    {
-      label: "Music",
-      value: "music",
-      key: 7
-    },
-    {
-      label: "Busywork",
-      value: "busywork",
-      key: 8
-    },
-  ];
-
   const handleChange = (e) => {
     setType(e.target.value)
   }
@@ -97,19 +96,18 @@ const AddTask = ({ onAddTask, user_id }) => {
   return (
     <DecentDiv>
       <NoiceForm onSubmit={generateActivity}>
-        {/* <GoodLabel>Choose an activity:</GoodLabel> */}
         <GoodSelect value={type} onChange={handleChange}>
           {options.map((option) => (
             <option value={option.value} key={option.key}>{option.label}</option>
           ))}
-      </GoodSelect>
-      <FindButton type="submit">Find Activity</FindButton>
-    </NoiceForm>
-    <ActivityDiv>
-      <GeneratedActivity />
+        </GoodSelect>
+        <FindButton type="submit">Find Activity</FindButton>
+      </NoiceForm>
+      <ActivityDiv>
+        <GeneratedActivity />
       </ActivityDiv>
-      <AddActButton type="button" onClick={addTask}>AddTask</AddActButton>
-      </DecentDiv>      
+      <AddActButton type="button" onClick={addTask}>Add Task</AddActButton>
+    </DecentDiv>      
   )
 }
 

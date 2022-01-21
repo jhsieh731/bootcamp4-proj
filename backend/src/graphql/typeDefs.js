@@ -2,18 +2,13 @@ const { gql } = require('apollo-server-express')
 
 module.exports = gql`
   type Query {
-    welcome: String!
     checkToken(token: String!): Boolean!
     user(id:ID!): User!
     userByEmail(email:String!): User!
     task(id:ID!): Task!
-    allUsers: [User!]!
-    allTasks: [Task!]!
-    allFriendships: [Friendship!]!
     getTasks(user_id: ID!): [Task!]!
     getCompleted(user_id: ID!): [Task!]!
     getActivities(user_id: ID!): [Task!]!
-    friendships: [Friendship!]
     friendship(id: ID!): [Friendship!]!
     pendingFriend(id:ID!): [Friendship!]!
     requestedFriend(id:ID!): [Friendship!]!
@@ -24,8 +19,7 @@ module.exports = gql`
     email: String!
     createdAt: String!
     updatedAt: String!
-    tasks: [Task!]
-    friendships: [Friendship!]
+    tasks: [Task!]!
   }
 
   type Task {
