@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { GET_ACTIVITIES } from './graphql'
-import { NoiceForm, AddActButton, FindButton, GoodSelect, ActivityDiv, DecentDiv } from './styles'
+import { NoiceForm, AddActButton, FindButton, GoodSelect, ActivityDiv, DecentDiv, NiceSlectClass } from './styles'
 
 const options = [
   {
@@ -96,17 +96,19 @@ const AddTask = ({ onAddTask, user_id }) => {
   return (
     <DecentDiv>
       <NoiceForm onSubmit={generateActivity}>
+        <NiceSlectClass>
         <GoodSelect value={type} onChange={handleChange}>
           {options.map((option) => (
             <option value={option.value} key={option.key}>{option.label}</option>
           ))}
         </GoodSelect>
+        </NiceSlectClass>
         <FindButton type="submit">Find Activity</FindButton>
       </NoiceForm>
       <ActivityDiv>
         <GeneratedActivity />
       </ActivityDiv>
-      <AddActButton type="button" onClick={addTask}>Add Task</AddActButton>
+      <AddActButton type="button" onClick={addTask}>Add Activity</AddActButton>
     </DecentDiv>      
   )
 }

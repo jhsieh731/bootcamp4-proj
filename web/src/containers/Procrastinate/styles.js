@@ -10,7 +10,7 @@ export const BestLi = styled.li`
   margin-top: 3px;
   height: 100%;
   overflow:auto;
-  color: white
+  color: white;
 `
 
 export const BackgroundBox = styled.div`
@@ -22,7 +22,7 @@ export const BackgroundBox = styled.div`
   padding-bottom: 35px;
   padding-top: 10px;
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
 `
 
 export const TaskButton = styled.button`
@@ -67,12 +67,29 @@ export const TaskButton = styled.button`
   }
 `
 
+export const NiceSlectClass = styled.div`
+  position: relative;
+
+`
+
 export const GoodSelect = styled.select`
   margin: 0 auto;
   display: block;
-  margin-bottom: 10px;
-`
+  margin-bottom: 15px;
+  background-color: white;
+  color: black;
+  padding: 12px;
+  width: 150px;
+  border: none;
+  font-size: 15px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+  border-radius: 3px;
 
+  &::sele
+`
 
 export const ActivityDiv = styled.button`
   background-color: white;
