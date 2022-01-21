@@ -235,7 +235,7 @@ export const NiceDiv = styled.div`
 
 `
 export const FormContainer = styled.div`
-  background: #fed8b1; 
+  background: #2E294E; 
   float: bottom;
   border-radius: 10px;
   border: 1px solid black;
