@@ -28,7 +28,7 @@ const Social = () => {
     if (countData && userData) {
       return (
         <SelfInfoDiv>
-          <h3>YOU!</h3>
+          <h2>YOU!</h2>
           <p>Email/Username: {userData.user.email}</p>
           <p>Tasks Completed: {countData.getCompleted.length}</p>
         </SelfInfoDiv>
@@ -42,13 +42,13 @@ const Social = () => {
     <CheckToken>
       <Container>
         <YourselfBox>
-      <Self />
-      </YourselfBox>
-      <FriendsBox>
-        <Friends user_id={user_id} />
-        <Pending user_id={user_id} />
-        <Requested user_id={user_id} />
-      </FriendsBox>
+          <Self />
+        </YourselfBox>
+        <FriendsBox>
+          <Friends user_id={user_id} />
+          <Pending user_id={user_id} />
+          <Requested user_id={user_id} />
+        </FriendsBox>
       </Container>
     </CheckToken>
   )

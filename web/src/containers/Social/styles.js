@@ -4,30 +4,37 @@ export const Container = styled.div`
     display:flex;
     flex-direction: column;
     height: 100%;
+    background-color: #c1c8e4;
 `
 
 export const YourselfBox = styled.div`
+    margin: 20px;
     padding: 20px;
-    box-shadow: 0 8px 6px -6px black;
-    
+    box-shadow: 0 8px 6px -6px white;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: #2E294E;
+    color: white;
 `
 
 export const FriendsBox = styled.div`
-    background-color: white;
     display: flex;
     flex-direction: row;
 `
 
 export const ActualFriends = styled.div`
-    background-color: white;
-    flex-grow: 1;
-    text-align: center;
-    padding: 20px;
-    width: 33%;
-    border-top: 2px solid black;
-    background-color: #c1c8e4;
-    height: 70vh;
-    border-right: 2px solid black;
+  flex-grow: 1;
+  text-align: center;
+  padding: 20px;
+  width: 33%;
+  border-radius: 10px;
+  border: 2px solid white;
+  background-color: #2E294E;
+  height: 70vh;
+  margin: 20px;
+  color: white;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: small;
 
 `
 
@@ -37,53 +44,56 @@ export const PendingFriends = styled.div`
     flex-grow: 1;
     width: 33%;
     padding: 20px;
-    border-top: 2px solid black;
+    border: 2px solid white;
+    border-radius: 10px;
     height: 100%;
-    background-color: #c1c8e4;
+    background-color: #2E294E;
     height: 70vh;
-    border-right: 2px solid black;
-
+    margin: 20px 0px;
+    color: white;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
 `
 
 export const RequestedFriends = styled.div`
-    background-color: white;
     flex-grow: 1;
     text-align: center;
     width: 33%;
     padding:20px;
-    border-top: 2px solid black;
-    background-color: #c1c8e4;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: #2E294E;
     height: 70vh;
-
+    margin: 20px;
+    color: white;
 `
 
 export const SelfInfoDiv = styled.div`
-    text-align: center;
-
+  text-align: center;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
 `
-
-
 
 export const BestLi = styled.li `
     list-style-type: none;
-    margin-top: 3px;
-    background-color: yellow;
+    background-color: #c1c8e4;
     display: flex;
     flex-direction: row;
-    border-radius: 2px;
-    border: 1px solid black;
+    border-radius: 6px;
+    border: none;
     height: 50px;
-
+    margin: 10px;
+    color: black;
+    padding: 10px;
 `
 
 export const BestP = styled.li`
-    background-color: #fdd385;
+    background-color: #c1c8e4;
     text-align: center;
     vertical-align: middle;
     line-height: 50px;
     padding-left: 10px;
     padding-right: 10px;
     border-right: 1px solid black;
+    margin-right: 10px;
     font-weight: bold;
     width: 190px;
 `
@@ -96,10 +106,16 @@ export const BestTask = styled.div`
     padding-left: 10px;
     padding-right: 10px;
     width: 100%;
+    border-radius: 10px;
+
 `
 
 export const DelFriendBtn = styled.button`
     margin-left: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    font-family: "Google Sans",Roboto,Arial,sans-serif;
+    padding: 5px;
 `
 
 export const AccButton = styled.button`
