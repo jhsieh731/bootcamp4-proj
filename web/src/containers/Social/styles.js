@@ -156,3 +156,14 @@ export const RejButton = styled.button`
     background-color: #a7b3c7;
   }
 `
+
+export const AddFriendButton = styled.button`
+  border-radius: 10px;
+  margin-left: 5px;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  padding: 5px;
+  background-color: #c1c8e4;
+  &:hover {
+    background-color: #a7b3c7;
+  }
+`
