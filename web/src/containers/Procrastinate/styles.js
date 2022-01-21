@@ -87,8 +87,6 @@ export const GoodSelect = styled.select`
   appearance: button;
   outline: none;
   border-radius: 3px;
-
-  &::sele
 `
 
 export const ActivityDiv = styled.button`

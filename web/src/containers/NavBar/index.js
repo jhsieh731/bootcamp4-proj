@@ -14,11 +14,11 @@ const NavBar = () => {
   }
   return (
     <FlexBox>
-        <Link to ="/greeting">Greeting</Link>
+        <Link to ="/greeting">Home</Link>
         <Link to="/produce">Produce</Link>
         <Link to="/procrastinate">Procrastinate</Link>
-        <Link to="/social">Social</Link>
         <Link to="/completed">Completed</Link>
+        <Link to="/social">Social</Link>
         <NiceButton type="button" onClick={logout}>Log Out</NiceButton>
     </FlexBox>
   )
